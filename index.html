@@ -6,6 +6,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Stops iOS/Windows Mail from auto-detecting things like "%%FirstName%%" as a
+       phone number/address/date and silently wrapping it in its own blue, underlined
+       link -- the actual cause of the broken-looking header greeting. -->
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no" />
   <link rel="shortcut icon" href="./jlr.png" type="image/x-icon" />
   <title>JLR — Web &amp; Marketing Automation</title>
   <!--[if gte mso 9]><xml>
@@ -15,9 +19,43 @@
         </o:OfficeDocumentSettings>
       </xml><![endif]-->
   <style>
+    /* Headings are reset inline on every element too -- this is a belt-and-suspenders
+       rule for clients that do read an embedded <style> block. */
+    h1, h2, h3 { margin: 0; padding: 0; }
+
+    /* Several clients auto-detect plain text (things that look like phone numbers,
+       dates, addresses, or unrecognized tokens like our raw %%merge_tags%%) and
+       silently re-wrap it in their own hyperlink, styled with their own default blue,
+       underlined look -- regardless of any inline style already on that text. These
+       rules target each client's specific wrapper and force it back to plain text. */
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    .x-gmail-data-detectors, .x-gmail-data-detectors *, .aBn {
+      color: inherit !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+      cursor: default !important;
+    }
+
+    #MessageViewBody a, #MessageViewBody a * {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
     /* Mobile viewport: columns collapse to full width, horizontal gutters
        between columns disappear and are replaced by vertical ones. */
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 640px) {
       .responsive-td {
         display: block !important;
         width: 100% !important;
@@ -49,235 +87,355 @@
 </head>
 
 <body style="margin: 0; padding: 0; min-width: 100%; background-color: #F7EDE2; font-family: Arial, Helvetica, sans-serif;">
-  <div style="display: none;
-        font-size: 1px;
-        color: #F7EDE2;
-        line-height: 1px;
-        max-height: 0px;
-        max-width: 0px;
-        opacity: 0;
-        overflow: hidden;">
-    Websites that convert. Automations that never sleep. Here's what I can build for you this month. &#128736;
-  </div>
-  <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px;"
-    role="presentation">
+  <!-- PREHEADER: hidden table, no <div>, kept out of the visible layout by the client. -->
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+    style="display:none;max-height:0;max-width:0;overflow:hidden;mso-hide:all;">
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:0 24px 0 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px"
-          role="presentation">
+      <td style="font-size:1px;line-height:1px;color:#F7EDE2;">
+        Websites that convert. Automations that never sleep. Here's what I can build for you this month. &#128736;
+      </td>
+    </tr>
+  </table>
+
+  <!-- OUTER CANVAS: 3 real columns (gutter | content | gutter) on every content row;
+       full-bleed spacer rows use colspan="3" to span all three. -->
+  <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+    style="max-width:640px;">
+
+    <tr>
+      <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
-            <td align="center" style="font-size: 11px;padding: 16px 0 16px 0;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              Trouble viewing this email? <a href="#" target="_blank"
-                style="text-decoration: underline;font-weight: bold;color: #3B2A20;font-family: Arial, Helvetica, sans-serif;">View
-                it in your browser</a>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:11px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Trouble viewing this email?
+                <a href="#" target="_blank" style="text-decoration:underline;font-weight:bold;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">View it in your browser</a>
+              </p>
             </td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
     </tr>
 
     <!-- HEADER -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:0 24px 0 24px;background-color:#FFFCF8;border-bottom: 2px solid #E4D5C3;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;padding:16px 0 16px 0;" role="presentation">
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-bottom:2px solid #E4D5C3;">
           <tr>
+            <td colspan="4" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
             <td align="left" valign="middle">
               <img src="./jlr.png" alt="JLR logo" width="34" height="auto" style="display:block;" />
             </td>
-            <td align="right" valign="middle" style="font-size: 14px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-              Hi %%FirstName%%,
-              <br /><span style="color:#6A5A4C;">%%CompanyName%%</span>
+            <td align="right" valign="middle">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.5;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                Hi %%FirstName%%,<br />
+                <span style="color:#6A5A4C;">%%CompanyName%%</span>
+              </p>
             </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="4" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
     </tr>
 
     <!-- HERO -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:32px 24px 8px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:16px;" role="presentation">
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:16px;">
           <tr>
-            <td align="center" style="padding: 0px 0px 24px 0px;">
-              <img src="./gettyimages-1426251907.jpg" alt="JLR reviewing campaign analytics on a laptop" width="100%"
-                height="auto" style="display:block;border-radius:16px 16px 0 0;" />
+            <td colspan="3">
+              <img src="./gettyimages-1426251907.jpg" alt="JLR reviewing campaign analytics on a laptop"
+                width="100%" height="auto" style="display:block;border-radius:16px 16px 0 0;" />
             </td>
           </tr>
           <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="32">&nbsp;</td>
             <td align="center">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-                style="max-width: 600px;padding:0 32px 32px 32px;background-color: #FFFCF8;" role="presentation">
+              <h1 style="margin:0;padding:0;font-size:24px;line-height:1.3;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                Websites and marketing automations that work while you sleep &#9889;
+              </h1>
+            </td>
+            <td width="32">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="32">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:15px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                I'm JLR, a web development &amp; martech automation engineer. I design fast, on-brand sites and
+                wire up the automations that turn visitors into customers — long after you've logged off.
+              </p>
+            </td>
+            <td width="32">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <!-- CTA (primary, 48px, with VML pill fallback for Outlook) -->
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding: 0px 0px 16px 0px;">
-                    <h1 style="margin:0;padding:0;font-size:24px;line-height:1.3;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                      Websites and marketing automations that work while you sleep &#9889;
-                    </h1>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size:15px;line-height:1.6;padding: 0px 8px 24px 8px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    I'm JLR, a web development &amp; martech automation engineer. I design fast, on-brand sites and
-                    wire up the automations that turn visitors into customers — long after you've logged off.
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 0px 0px 8px 0px;">
-                    <!-- CTA (primary, 48px, with VML pill fallback for Outlook) -->
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <td align="center">
+                    <!--[if mso]>
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+                      href="#" arcsize="50%" stroke="f" fillcolor="#B7472A"
+                      style="height:48px;v-text-anchor:middle;width:248px;">
+                      <w:anchorlock/>
+                      <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">
+                        Book a free strategy call
+                      </center>
+                    </v:roundrect>
+                    <![endif]-->
+                    <!--[if !mso]><!-->
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" height="48" width="248"
+                      style="background-color:#B7472A;background-image:linear-gradient(#B7472A,#B7472A) !important;border-radius:28px;">
                       <tr>
-                        <td align="center">
-                          <!--[if mso]>
-                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                            href="#" arcsize="50%" stroke="f" fillcolor="#B7472A"
-                            style="height:48px;v-text-anchor:middle;width:248px;">
-                            <w:anchorlock/>
-                            <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">
-                              Book a free strategy call
-                            </center>
-                          </v:roundrect>
-                          <![endif]-->
-                          <!--[if !mso]><!-->
-                          <table align="center" border="0" cellpadding="0" cellspacing="0" height="48" width="248"
-                            style="background-color:#B7472A;background-image:linear-gradient(#B7472A,#B7472A) !important;border-radius:28px;">
-                            <tr>
-                              <td height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" target="_blank"
-                                  style="color:#FFFFFF;text-decoration:none;font-weight:bold;display:block;
-                                  -webkit-text-fill-color:#FFFFFF !important;padding:0;margin:0;
-                                  font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;text-align:center;">
-                                  Book a free strategy call
-                                </a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
-                              </td>
-                            </tr>
-                          </table>
-                          <!--<![endif]-->
+                        <td height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" target="_blank"
+                            style="color:#FFFFFF;text-decoration:none;font-weight:bold;display:block;
+                            -webkit-text-fill-color:#FFFFFF !important;margin:0;
+                            font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;text-align:center;">
+                            Book a free strategy call
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
                         </td>
                       </tr>
                     </table>
-                    <!-- /CTA -->
+                    <!--<![endif]-->
                   </td>
                 </tr>
               </table>
+              <!-- /CTA -->
             </td>
+          </tr>
+          <tr>
+            <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
     </tr>
 
     <!-- STATS BAND -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:24px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color:#B7472A;border-radius:16px;" role="presentation">
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#B7472A;border-radius:16px;">
           <tr>
-            <td align="center" style="padding:28px 20px;">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" dir="ltr"
-                role="presentation">
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="center">
+              <!-- Real side-by-side columns: one row, seven real cells (three stats,
+                   two mobile-only vertical spacers, two desktop-only dividers). -->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" dir="ltr">
                 <tr>
-                  <!-- STAT 1 -->
                   <td class="responsive-td" align="center" valign="top" style="width:33.3%;">
-                    <div style="font-size:26px;font-weight:bold;color:#FFFFFF;font-family: Arial, Helvetica, sans-serif;">40+</div>
-                    <div style="font-size:12px;color:#FFF1EC;padding-top:4px;font-family: Arial, Helvetica, sans-serif;">Automations shipped</div>
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;">40+</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:12px;color:#FFF1EC;font-family:Arial,Helvetica,sans-serif;">Automations shipped</p>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
-                  <!-- VERTICAL, MOBILE-ONLY SPACING -->
                   <!--[if !mso]><!-->
                   <td class="mobile-showBlock responsive-td" dir="ltr"
                     style="width:100%;display:none;mso-line-height-rule:exactly;height:20px;line-height:20px;">&nbsp;</td>
                   <!--<![endif]-->
-                  <!-- DESKTOP-ONLY DIVIDER -->
                   <td class="mobile-hidden" style="width:1px;max-width:1px;min-width:1px;background-color:#D98A6E;">&nbsp;</td>
-                  <!-- STAT 2 -->
                   <td class="responsive-td" align="center" valign="top" style="width:33.3%;">
-                    <div style="font-size:26px;font-weight:bold;color:#FFFFFF;font-family: Arial, Helvetica, sans-serif;">3.2x</div>
-                    <div style="font-size:12px;color:#FFF1EC;padding-top:4px;font-family: Arial, Helvetica, sans-serif;">Faster lead response</div>
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;">3.2x</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:12px;color:#FFF1EC;font-family:Arial,Helvetica,sans-serif;">Faster lead response</p>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                   <!--[if !mso]><!-->
                   <td class="mobile-showBlock responsive-td" dir="ltr"
                     style="width:100%;display:none;mso-line-height-rule:exactly;height:20px;line-height:20px;">&nbsp;</td>
                   <!--<![endif]-->
                   <td class="mobile-hidden" style="width:1px;max-width:1px;min-width:1px;background-color:#D98A6E;">&nbsp;</td>
-                  <!-- STAT 3 -->
                   <td class="responsive-td" align="center" valign="top" style="width:33.3%;">
-                    <div style="font-size:26px;font-weight:bold;color:#FFFFFF;font-family: Arial, Helvetica, sans-serif;">48h</div>
-                    <div style="font-size:12px;color:#FFF1EC;padding-top:4px;font-family: Arial, Helvetica, sans-serif;">Avg. quick-build turnaround</div>
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;">48h</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="margin:0;padding:0;font-size:12px;color:#FFF1EC;font-family:Arial,Helvetica,sans-serif;">Avg. quick-build turnaround</p>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
               </table>
             </td>
+            <td width="20">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
 
-    <!-- SERVICES / VALUE PROPS -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:32px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+      <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- "WHAT I BUILD" HEADING -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
-            <td align="center" style="padding:0 0 20px 0;">
-              <h2 style="margin:0;padding:0;font-size:20px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">What I build</h2>
+            <td align="center">
+              <h2 style="margin:0;padding:0;font-size:20px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">What I build</h2>
             </td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
+
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:0px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;border-top:4px solid #CE9B3D;"
-          role="presentation">
+      <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- SERVICE CARD 1 -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;border-top:4px solid #CE9B3D;">
           <tr>
-            <td align="center" style="padding:28px 24px;">
-              <table align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="56" height="56" align="center" valign="middle" bgcolor="#F7E9CC"
                     style="border-radius:999px;width:56px;height:56px;">
-                    <img src="./computer-tablet-phone-icon-20.png" alt="Devices icon" width="28" height="auto"
-                      style="display:block;" />
+                    <img src="./computer-tablet-phone-icon-20.png" alt="Devices icon" width="28" height="auto" style="display:block;" />
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:16px;padding:0px 20px 8px 20px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-              <strong>Websites built to convert</strong>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <h3 style="margin:0;padding:0;font-size:16px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Websites built to convert</h3>
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:14px;line-height:1.6;padding:0px 24px 28px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              Fast, responsive, on-brand sites that look right on every device — and in every inbox.
+            <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Fast, responsive, on-brand sites that look right on every device — and in every inbox.
+              </p>
             </td>
+            <td width="20">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
+
     <tr>
-      <td align="center" width="600px" style="width: 100% !important;max-width: 600px;padding:16px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;border-top:4px solid #B7472A;"
-          role="presentation">
+      <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- SERVICE CARD 2 -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;border-top:4px solid #B7472A;">
           <tr>
-            <td align="center" style="padding:28px 24px;">
-              <table align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="56" height="56" align="center" valign="middle" bgcolor="#F5DCD2"
                     style="border-radius:999px;width:56px;height:56px;">
@@ -288,26 +446,49 @@
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:16px;padding:0px 20px 8px 20px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-              <strong>Automations that run 24/7</strong>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <h3 style="margin:0;padding:0;font-size:16px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Automations that run 24/7</h3>
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:14px;line-height:1.6;padding:0px 24px 28px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              Lead routing, email sequences, and CRM syncs that keep working long after you log off.
+            <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Lead routing, email sequences, and CRM syncs that keep working long after you log off.
+              </p>
             </td>
+            <td width="20">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
+
     <tr>
-      <td align="center" width="600px" style="width: 100% !important;max-width: 600px;padding:16px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;border-top:4px solid #5C6B3C;"
-          role="presentation">
+      <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- SERVICE CARD 3 -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;border-top:4px solid #5C6B3C;">
           <tr>
-            <td align="center" style="padding:28px 24px;">
-              <table align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="56" height="56" align="center" valign="middle" bgcolor="#E4E9D9"
                     style="border-radius:999px;width:56px;height:56px;">
@@ -318,75 +499,123 @@
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:16px;padding:0px 20px 8px 20px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-              <strong>Delivered on a schedule you can trust</strong>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <h3 style="margin:0;padding:0;font-size:16px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Delivered on a schedule you can trust</h3>
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:14px;line-height:1.6;padding:0px 24px 28px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              Clear timelines, async updates, and no surprise scope creep.
+            <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Clear timelines, async updates, and no surprise scope creep.
+              </p>
             </td>
+            <td width="20">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
 
-    <!-- PRICING TIERS -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:36px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+      <td colspan="3" height="36" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- PRICING INTRO -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
-            <td align="center" style="padding:0 0 4px 0;">
-              <h2 style="margin:0;padding:0;font-size:20px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">Pick your plan</h2>
+            <td align="center">
+              <h2 style="margin:0;padding:0;font-size:20px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Pick your plan</h2>
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:14px;padding:0 8px 20px 8px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              Three clear packages. No shrinking discounts, no fine print.
+            <td height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Three clear packages. No shrinking discounts, no fine print.
+              </p>
             </td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
+
     <tr>
-      <td align="center" width="600px" style="width: 100% !important;max-width: 600px;padding:0px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" cellpadding="0" cellspacing="0" dir="ltr" role="presentation"
-          style="width:100%;min-width:100%;">
+      <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- PRICING TIERS: one row, real side-by-side columns (same technique as the stats band). -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" dir="ltr">
           <tr>
             <!-- TIER 1: STARTER -->
-            <td class="responsive-td" dir="ltr" align="center" valign="top"
-              style="width:31.3%;background-color:#FFFCF8;border-radius:12px;border:1px solid #E4D5C3;">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <td class="responsive-td" dir="ltr" align="center" valign="top" style="width:31.3%;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="background-color:#FFFCF8;border-radius:12px;border:1px solid #E4D5C3;">
                 <tr>
-                  <td align="center" style="padding:24px 16px 0px 16px;font-size:12px;letter-spacing:0.06em;color:#5C6B3C;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>STARTER</strong>
+                  <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <h3 style="margin:0;padding:0;font-size:12px;letter-spacing:0.06em;color:#5C6B3C;font-family:Arial,Helvetica,sans-serif;">STARTER</h3>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:8px 16px 0px 16px;font-size:26px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>$900</strong>
+                  <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">$900</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 20px 16px;font-size:12px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    starting at, per project
+                  <td colspan="3" height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:12px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">starting at, per project</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="left" style="padding:0px 20px 20px 20px;font-size:13px;line-height:1.9;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <span style="color:#5C6B3C;">&#10003;</span> Landing page or email build<br />
-                    <span style="color:#5C6B3C;">&#10003;</span> 1 automated workflow<br />
-                    <span style="color:#5C6B3C;">&#10003;</span> 2-week turnaround
-                  </td>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 24px 16px;">
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <td width="20">&nbsp;</td>
+                  <td align="left">
+                    <p style="margin:0;padding:0;font-size:13px;line-height:1.9;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                      <span style="color:#5C6B3C;">&#10003;</span> Landing page or email build<br />
+                      <span style="color:#5C6B3C;">&#10003;</span> 1 automated workflow<br />
+                      <span style="color:#5C6B3C;">&#10003;</span> 2-week turnaround
+                    </p>
+                  </td>
+                  <td width="20">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center">
-                          <!-- CTA (secondary, square corner in Outlook is an accepted degrade) -->
-                          <table align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
+                          <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
                             style="background-color:#5C6B3C;background-image:linear-gradient(#5C6B3C,#5C6B3C) !important;border-radius:20px;">
                             <tr>
                               <td height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
@@ -397,7 +626,7 @@
                               <td style="line-height:1;mso-line-height-rule:exactly;">
                                 <a href="#" target="_blank"
                                   style="color:#FFFFFF;text-decoration:none;font-weight:bold;display:block;
-                                  -webkit-text-fill-color:#FFFFFF !important;padding:0;margin:0;
+                                  -webkit-text-fill-color:#FFFFFF !important;margin:0;
                                   font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:24px;text-align:center;">
                                   Get started
                                 </a>
@@ -414,56 +643,87 @@
                     </table>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
               </table>
             </td>
             <!-- /TIER 1 -->
-            <!-- VERTICAL, MOBILE-ONLY SPACING -->
             <!--[if !mso]><!-->
             <td class="mobile-showBlock responsive-td" dir="ltr"
               style="width:100%;display:none;mso-line-height-rule:exactly;height:16px;line-height:16px;">&nbsp;</td>
             <!--<![endif]-->
-            <!-- HORIZONTAL, DESKTOP-ONLY SPACING -->
             <td class="mobile-hidden" style="width:16px;max-width:16px;min-width:16px;">&nbsp;</td>
             <!-- TIER 2: GROWTH (highlighted) -->
-            <td class="responsive-td" dir="ltr" align="center" valign="top"
-              style="width:31.3%;background-color:#FFFFFF;border-radius:12px;border:2px solid #B7472A;">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <td class="responsive-td" dir="ltr" align="center" valign="top" style="width:31.3%;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="background-color:#FFFFFF;border-radius:12px;border:2px solid #B7472A;">
                 <tr>
-                  <td align="center" style="padding:12px 12px 0px 12px;">
-                    <span style="display:inline-block;background-color:#B7472A;color:#FFFFFF;font-size:10px;
-                      letter-spacing:0.06em;font-weight:bold;padding:5px 12px;border-radius:999px;font-family: Arial, Helvetica, sans-serif;">MOST
-                      POPULAR</span>
+                  <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <!-- Ribbon badge: padding on this small table is paired with
+                         mso-padding-alt, exactly as the reference badge pattern does,
+                         since a pill this size can't be built from spacer cells alone. -->
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" bgcolor="#B7472A"
+                          style="padding:5px 12px;mso-padding-alt:5px 12px;border-radius:999px;">
+                          <p style="margin:0;padding:0;font-size:10px;letter-spacing:0.06em;font-weight:bold;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;">MOST POPULAR</p>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:16px 16px 0px 16px;font-size:12px;letter-spacing:0.06em;color:#B7472A;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>GROWTH</strong>
+                  <td colspan="3" height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <h3 style="margin:0;padding:0;font-size:12px;letter-spacing:0.06em;color:#B7472A;font-family:Arial,Helvetica,sans-serif;">GROWTH</h3>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:8px 16px 0px 16px;font-size:26px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>$2,400</strong>
+                  <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">$2,400</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 20px 16px;font-size:12px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    starting at, per project
+                  <td colspan="3" height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:12px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">starting at, per project</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="left" style="padding:0px 20px 20px 20px;font-size:13px;line-height:1.9;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <span style="color:#B7472A;">&#10003;</span> Full website or email system<br />
-                    <span style="color:#B7472A;">&#10003;</span> Up to 5 automated workflows<br />
-                    <span style="color:#B7472A;">&#10003;</span> CRM / ESP integration<br />
-                    <span style="color:#B7472A;">&#10003;</span> 4-week turnaround
-                  </td>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 24px 16px;">
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <td width="20">&nbsp;</td>
+                  <td align="left">
+                    <p style="margin:0;padding:0;font-size:13px;line-height:1.9;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                      <span style="color:#B7472A;">&#10003;</span> Full website or email system<br />
+                      <span style="color:#B7472A;">&#10003;</span> Up to 5 automated workflows<br />
+                      <span style="color:#B7472A;">&#10003;</span> CRM / ESP integration<br />
+                      <span style="color:#B7472A;">&#10003;</span> 4-week turnaround
+                    </p>
+                  </td>
+                  <td width="20">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center">
-                          <table align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
+                          <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
                             style="background-color:#B7472A;background-image:linear-gradient(#B7472A,#B7472A) !important;border-radius:20px;">
                             <tr>
                               <td height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
@@ -474,7 +734,7 @@
                               <td style="line-height:1;mso-line-height-rule:exactly;">
                                 <a href="#" target="_blank"
                                   style="color:#FFFFFF;text-decoration:none;font-weight:bold;display:block;
-                                  -webkit-text-fill-color:#FFFFFF !important;padding:0;margin:0;
+                                  -webkit-text-fill-color:#FFFFFF !important;margin:0;
                                   font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:24px;text-align:center;">
                                   Start a project
                                 </a>
@@ -491,48 +751,68 @@
                     </table>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
               </table>
             </td>
             <!-- /TIER 2 -->
-            <!-- VERTICAL, MOBILE-ONLY SPACING -->
             <!--[if !mso]><!-->
             <td class="mobile-showBlock responsive-td" dir="ltr"
               style="width:100%;display:none;mso-line-height-rule:exactly;height:16px;line-height:16px;">&nbsp;</td>
             <!--<![endif]-->
-            <!-- HORIZONTAL, DESKTOP-ONLY SPACING -->
             <td class="mobile-hidden" style="width:16px;max-width:16px;min-width:16px;">&nbsp;</td>
             <!-- TIER 3: PRO -->
-            <td class="responsive-td" dir="ltr" align="center" valign="top"
-              style="width:31.3%;background-color:#FFFCF8;border-radius:12px;border:1px solid #E4D5C3;">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <td class="responsive-td" dir="ltr" align="center" valign="top" style="width:31.3%;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="background-color:#FFFCF8;border-radius:12px;border:1px solid #E4D5C3;">
                 <tr>
-                  <td align="center" style="padding:24px 16px 0px 16px;font-size:12px;letter-spacing:0.06em;color:#8A6D1D;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>PRO</strong>
+                  <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <h3 style="margin:0;padding:0;font-size:12px;letter-spacing:0.06em;color:#8A6D1D;font-family:Arial,Helvetica,sans-serif;">PRO</h3>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:8px 16px 0px 16px;font-size:26px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>Custom</strong>
+                  <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:26px;font-weight:bold;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Custom</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 20px 16px;font-size:12px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    scoped around your goals
+                  <td colspan="3" height="4" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <p style="margin:0;padding:0;font-size:12px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">scoped around your goals</p>
                   </td>
                 </tr>
                 <tr>
-                  <td align="left" style="padding:0px 20px 20px 20px;font-size:13px;line-height:1.9;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <span style="color:#8A6D1D;">&#10003;</span> Full-funnel web + automation<br />
-                    <span style="color:#8A6D1D;">&#10003;</span> Unlimited workflow complexity<br />
-                    <span style="color:#8A6D1D;">&#10003;</span> Ongoing optimization &amp; support
-                  </td>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding:0px 16px 24px 16px;">
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <td width="20">&nbsp;</td>
+                  <td align="left">
+                    <p style="margin:0;padding:0;font-size:13px;line-height:1.9;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                      <span style="color:#8A6D1D;">&#10003;</span> Full-funnel web + automation<br />
+                      <span style="color:#8A6D1D;">&#10003;</span> Unlimited workflow complexity<br />
+                      <span style="color:#8A6D1D;">&#10003;</span> Ongoing optimization &amp; support
+                    </p>
+                  </td>
+                  <td width="20">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center">
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center">
-                          <table align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
+                          <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" height="40" width="140"
                             style="background-color:#CE9B3D;background-image:linear-gradient(#CE9B3D,#CE9B3D) !important;border-radius:20px;">
                             <tr>
                               <td height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
@@ -543,7 +823,7 @@
                               <td style="line-height:1;mso-line-height-rule:exactly;">
                                 <a href="#" target="_blank"
                                   style="color:#3B2A20;text-decoration:none;font-weight:bold;display:block;
-                                  -webkit-text-fill-color:#3B2A20 !important;padding:0;margin:0;
+                                  -webkit-text-fill-color:#3B2A20 !important;margin:0;
                                   font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:24px;text-align:center;">
                                   Talk scope
                                 </a>
@@ -560,23 +840,34 @@
                     </table>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
               </table>
             </td>
             <!-- /TIER 3 -->
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td colspan="3" height="36" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
     </tr>
 
     <!-- ROI / RESULTS -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:36px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;" role="presentation">
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;">
           <tr>
-            <td align="center" style="padding:32px 28px;">
-              <table align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
+            <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="56" height="56" align="center" valign="middle" bgcolor="#F7E9CC"
                     style="border-radius:999px;width:56px;height:56px;">
@@ -584,116 +875,167 @@
                   </td>
                 </tr>
               </table>
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="center" style="padding:16px 0px 8px 0px;">
-                    <h2 style="margin:0;padding:0;font-size:19px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">Built to pay for itself</h2>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size:14px;line-height:1.6;padding:0px 8px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    Every automation is measured against the hours it saves and the leads it recovers — not just
-                    how it looks in a demo. Most clients recover <strong style="color:#3B2A20;">10+ hours a
-                      week</strong> within the first month.
-                  </td>
-                </tr>
-              </table>
             </td>
+          </tr>
+          <tr>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <h2 style="margin:0;padding:0;font-size:19px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Built to pay for itself</h2>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="28">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Every automation is measured against the hours it saves and the leads it recovers — not just
+                how it looks in a demo. Most clients recover <strong style="color:#3B2A20;">10+ hours a week</strong>
+                within the first month.
+              </p>
+            </td>
+            <td width="28">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
 
-    <!-- TESTIMONIAL -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:24px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;border-left:4px solid #CE9B3D;"
-          role="presentation">
+      <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- TESTIMONIAL: left accent bar is a single rowspan'd cell, not a border property. -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;">
           <tr>
-            <td align="center" style="padding:28px 28px;">
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="center" style="font-size:16px;padding:0px 0px 12px 0px;color:#8A6D1D;">
-                    &starf;&nbsp;&starf;&nbsp;&starf;&nbsp;&starf;&nbsp;&starf;
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size:15px;line-height:1.6;font-style:italic;padding:0px 4px 16px 4px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    &ldquo;JLR rebuilt our signup flow and wired it straight into our CRM. We stopped losing leads
-                    in spreadsheets within the first week.&rdquo;
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size:13px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    <strong style="color:#3B2A20;">Jordan T.</strong> — Head of Growth (sample client)
-                  </td>
-                </tr>
-              </table>
+            <td rowspan="7" width="4" bgcolor="#CE9B3D" style="width:4px;">&nbsp;</td>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:16px;color:#CE9B3D;font-family:Arial,Helvetica,sans-serif;">
+                &starf;&nbsp;&starf;&nbsp;&starf;&nbsp;&starf;&nbsp;&starf;
+              </p>
             </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:15px;line-height:1.6;font-style:italic;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                &ldquo;JLR rebuilt our signup flow and wired it straight into our CRM. We stopped losing leads
+                in spreadsheets within the first week.&rdquo;
+              </p>
+            </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:13px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                <strong style="color:#3B2A20;">Jordan T.</strong> — Head of Growth (sample client)
+              </p>
+            </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="28" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
     </tr>
 
     <!-- FAQ / CONTACT -->
     <tr>
-      <td align="center" width="600px"
-        style="width: 100% !important;max-width: 600px;padding:24px 24px 0px 24px;background-color:#F7EDE2;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-radius:12px;" role="presentation">
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-radius:12px;">
           <tr>
-            <td align="center" style="padding:32px 24px;">
-              <table align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
+            <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="56" height="56" align="center" valign="middle" bgcolor="#F5DCD2"
                     style="border-radius:999px;width:56px;height:56px;">
-                    <img src="./question-mark-3.png" alt="Question mark icon" width="24" height="auto"
-                      style="display:block;" />
+                    <img src="./question-mark-3.png" alt="Question mark icon" width="24" height="auto" style="display:block;" />
                   </td>
                 </tr>
               </table>
-              <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <h2 style="margin:0;padding:0;font-size:19px;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">Got questions before we start?</h2>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" height="8" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td align="center">
+              <p style="margin:0;padding:0;font-size:14px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Message me on WhatsApp or grab 15 minutes on my calendar — no pressure, no sales script.
+              </p>
+            </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center">
+              <!-- CTA (outline, secondary) -->
+              <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding:16px 0px 8px 0px;">
-                    <h2 style="margin:0;padding:0;font-size:19px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">Got questions before we start?</h2>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size:14px;line-height:1.6;padding:0px 12px 24px 12px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    Message me on WhatsApp or grab 15 minutes on my calendar — no pressure, no sales script.
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding:0px 0px 4px 0px;">
-                    <!-- CTA (outline, secondary) -->
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <td align="center">
+                    <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" height="44" width="200"
+                      style="background-color:#FFFCF8;border:1px solid #B7472A;border-radius:22px;">
                       <tr>
-                        <td align="center">
-                          <table align="center" border="0" cellpadding="0" cellspacing="0" height="44" width="200"
-                            style="background-color:#FFFCF8;border:1px solid #B7472A;border-radius:22px;">
-                            <tr>
-                              <td height="10" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" target="_blank"
-                                  style="color:#B7472A;text-decoration:none;font-weight:bold;display:block;
-                                  padding:0;margin:0;
-                                  font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;text-align:center;">
-                                  Book a free call
-                                </a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td height="10" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
-                                <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
-                              </td>
-                            </tr>
-                          </table>
+                        <td height="10" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" target="_blank"
+                            style="color:#B7472A;text-decoration:none;font-weight:bold;display:block;margin:0;
+                            font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;text-align:center;">
+                            Book a free call
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="10" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">
+                          <a href="#" style="text-decoration:none;" target="_blank">&nbsp;</a>
                         </td>
                       </tr>
                     </table>
@@ -702,97 +1044,118 @@
               </table>
             </td>
           </tr>
+          <tr>
+            <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
 
-    <!-- FOOTER -->
     <tr>
-      <td align="center" width="600px" style="width: 100% !important;max-width: 600px;background-color:#F7EDE2;padding-top:32px;">
-        <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
-          style="max-width: 600px;background-color: #FFFCF8;border-top: 2px solid #E4D5C3;border-radius:12px 12px 0 0;"
-          role="presentation">
+      <td colspan="3" height="32" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;background-color:#F7EDE2;">&nbsp;</td>
+    </tr>
+
+    <!-- FOOTER: max column count is 7 (set by the social-icons row), so every
+         other row here sums its colspans to 7. -->
+    <tr>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
+      <td align="center" valign="top" bgcolor="#F7EDE2">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="background-color:#FFFCF8;border-top:2px solid #E4D5C3;border-radius:12px 12px 0 0;">
           <tr>
-            <td align="center" style="padding:24px 20px 0px 20px;">
+            <td colspan="7" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" align="center">
               <img src="./jlr.png" alt="JLR logo" width="28" height="auto" style="display:block;margin:0 auto;" />
             </td>
           </tr>
           <tr>
-            <td align="center" style="font-size:13px;padding:12px 20px 20px 20px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-              JLR — Web &amp; Marketing Automation Engineer
+            <td colspan="7" height="12" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" align="center">
+              <p style="margin:0;padding:0;font-size:13px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">JLR — Web &amp; Marketing Automation Engineer</p>
             </td>
           </tr>
           <tr>
-            <td align="center" style="padding: 4px 0 16px 0;border-bottom: 1px solid #E4D5C3;">
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="center" style="font-size:13px;padding:0 0 16px 0;">
-                    <a href="#" target="_blank" style="text-decoration: none;color:#B7472A;font-weight: 700;font-family: Arial, Helvetica, sans-serif;">Portfolio</a>
-                    &nbsp;&middot;&nbsp;
-                    <a href="#" target="_blank" style="text-decoration: none;color:#B7472A;font-weight: 700;font-family: Arial, Helvetica, sans-serif;">Book a call</a>
-                    &nbsp;&middot;&nbsp;
-                    <a href="#" target="_blank" style="text-decoration: none;color:#B7472A;font-weight: 700;font-family: Arial, Helvetica, sans-serif;">Services</a>
-                  </td>
-                </tr>
-              </table>
+            <td colspan="7" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" align="center">
+              <p style="margin:0;padding:0;font-size:13px;font-family:Arial,Helvetica,sans-serif;">
+                <a href="#" target="_blank" style="text-decoration:none;color:#B7472A;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">Portfolio</a>
+                &nbsp;&middot;&nbsp;
+                <a href="#" target="_blank" style="text-decoration:none;color:#B7472A;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">Book a call</a>
+                &nbsp;&middot;&nbsp;
+                <a href="#" target="_blank" style="text-decoration:none;color:#B7472A;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">Services</a>
+              </p>
             </td>
           </tr>
           <tr>
-            <td align="center" style="padding: 16px 0;">
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td width="35px" align="left" style="font-size: 14px;padding: 5px 0px 5px 24px;">
-                    <a href="#" target="_blank" style="text-decoration: none;"><img
-                        src="./x.png" alt="JLR on X" width="21" height="auto" /></a>
-                  </td>
-                  <td width="35px" align="left" style="font-size: 14px;padding: 5px 0px;">
-                    <a href="#" target="_blank" style="text-decoration: none;"><img
-                        src="./fb.png" alt="JLR on Facebook" width="21" height="auto" /></a>
-                  </td>
-                  <td width="35px" align="left" style="font-size: 14px;padding: 5px 0px;">
-                    <a href="#" target="_blank" style="text-decoration: none;"><img
-                        src="./ig.png" alt="JLR on Instagram" width="21" height="auto" /></a>
-                  </td>
-                  <td align="right" style="font-size: 14px;padding: 5px 24px 5px 20px;">
-                    <a href="#" target="_blank"><img src="./jlr.png" alt="JLR logo" width="26" height="auto" /></a>
-                  </td>
-                </tr>
-              </table>
+            <td colspan="7" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" style="border-top:1px solid #E4D5C3;font-size:1px;line-height:1px;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td width="30" align="left">
+              <a href="#" target="_blank"><img src="./x.png" alt="JLR on X" width="21" height="auto" style="display:block;" /></a>
+            </td>
+            <td width="30" align="left">
+              <a href="#" target="_blank"><img src="./fb.png" alt="JLR on Facebook" width="21" height="auto" style="display:block;" /></a>
+            </td>
+            <td width="30" align="left">
+              <a href="#" target="_blank"><img src="./ig.png" alt="JLR on Instagram" width="21" height="auto" style="display:block;" /></a>
+            </td>
+            <td align="left">&nbsp;</td>
+            <td align="right">
+              <a href="#" target="_blank"><img src="./jlr.png" alt="JLR logo" width="26" height="auto" style="display:block;" /></a>
+            </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" height="20" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="24">&nbsp;</td>
+            <td colspan="5" align="left">
+              <p style="margin:0 0 8px 0;padding:0;font-size:12px;line-height:1.6;color:#3B2A20;font-family:Arial,Helvetica,sans-serif;">
+                <strong>This is an automated email.</strong><br />No need to reply — but WhatsApp and my inbox are always open.
+              </p>
+              <p style="margin:0 0 8px 0;padding:0;font-size:12px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                You're receiving this because you requested a proposal, downloaded a resource, or booked a call
+                with JLR in the last 12 months. [Business address], [City, Country].
+              </p>
+              <p style="margin:0;padding:0;font-size:12px;line-height:1.6;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">
+                Didn't sign up for this, or want to update your preferences?
+                <a href="#" target="_blank" style="color:#B7472A;">Manage preferences</a> or
+                <a href="#" target="_blank" style="color:#B7472A;">unsubscribe</a>.
+              </p>
+            </td>
+            <td width="24">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" height="16" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="7" align="center">
+              <p style="margin:0;padding:0;font-size:12px;color:#6A5A4C;font-family:Arial,Helvetica,sans-serif;">JLR — &copy;2026</p>
             </td>
           </tr>
           <tr>
-            <td align="center">
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="left" style="font-size: 12px;padding: 5px 24px;color:#3B2A20;font-family: Arial, Helvetica, sans-serif;">
-                    <strong>This is an automated email.</strong><br />No need to reply — but WhatsApp and my inbox
-                    are always open.
-                  </td>
-                </tr>
-                <tr>
-                  <td align="left" style="font-size: 12px;line-height:1.6;padding: 10px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    You're receiving this because you requested a proposal, downloaded a resource, or booked a
-                    call with JLR in the last 12 months. [Business address], [City, Country].
-                  </td>
-                </tr>
-                <tr>
-                  <td align="left" style="font-size: 12px;padding: 10px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    Didn't sign up for this, or want to update your preferences? <a href="#" target="_blank"
-                      style="color:#B7472A;">Manage preferences</a> or <a href="#" target="_blank"
-                      style="color:#B7472A;">unsubscribe</a>.
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="font-size: 12px;padding: 16px 24px 24px 24px;color:#6A5A4C;font-family: Arial, Helvetica, sans-serif;">
-                    JLR — &copy;2026
-                  </td>
-                </tr>
-              </table>
-            </td>
+            <td colspan="7" height="24" style="font-size:1px;line-height:1;mso-line-height-rule:exactly;">&nbsp;</td>
           </tr>
         </table>
       </td>
+      <td width="24" bgcolor="#F7EDE2" style="width:24px;">&nbsp;</td>
     </tr>
+
   </table>
 </body>
 
